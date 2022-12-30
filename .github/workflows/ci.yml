@@ -10,10 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          # GoReleaser's changelog capability doens't work without git history. A 0 fetch depth
+          # ensures we get the entire history.
           fetch-depth: 0
+
       - uses: actions/setup-go@v3
         with:
           go-version: 1.19
+
       - name: Install GoReleaser
         uses: goreleaser/goreleaser-action@v4
         with:
