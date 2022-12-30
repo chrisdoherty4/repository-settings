@@ -2,6 +2,8 @@ name: Repository Settings
 
 on:
   push:
+    paths-ignore:
+      - .github/workflows/test.yml
 
 jobs:
   build:
