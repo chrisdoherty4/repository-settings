@@ -18,6 +18,12 @@ jobs:
         uses: goreleaser/goreleaser-action@v4
         with:
           version: latest
-          args: release --rm-dist --snapshot
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          install-only: true
+
+      - name: Build
+        run: |
+          goreleaser release --rm-dist --snapshot
+
+      - name: Push
+        run: |
+          docker push ghcr.io/chrisdoherty4/repository-settings:latest
